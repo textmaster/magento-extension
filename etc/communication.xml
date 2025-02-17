@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * communication
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Communication/etc/communication.xsd">
+    <topic name="textmaster.apply_translation" request="TextMaster\TextMaster\Api\MessageInterface"/>
+</config>

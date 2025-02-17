@@ -1,0 +1,21 @@
+<?php
+/**
+ * Has not ap template message template
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+
+use Magento\Framework\View\Element\Template;
+
+/** @var Template $block */
+?>
+<?= $block->escapeHtml(
+    __(
+        'The module needs api templates to work. ' .
+        'Please click on the following link <a href="%1">Manage my API Templates</a>.',
+        $block->getData('url')
+    ),
+    ['a']
+);

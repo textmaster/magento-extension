@@ -1,0 +1,110 @@
+{
+    "textmaster_project": {
+        "column": {
+            "project_id": true,
+            "textmaster_id": true,
+            "token": true,
+            "name": true,
+            "due_date": true,
+            "template_id": true,
+            "source_language": true,
+            "source_store_id": true,
+            "target_language": true,
+            "target_store_id": true,
+            "document_type": true,
+            "price": true,
+            "currency": true,
+            "number_of_documents": true,
+            "total_word_count": true,
+            "progress": true,
+            "status": true,
+            "notes": true,
+            "project_type": true,
+            "language_level": true,
+            "category": true,
+            "created_at": true,
+            "updated_at": true,
+            "start_translation_at": true,
+            "is_applied": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "TEXTMASTER_ID": true,
+            "TEXTMASTER_PROJECT_SOURCE_STORE_ID_STORE_STORE_ID": true,
+            "TEXTMASTER_PROJECT_TARGET_STORE_ID_STORE_STORE_ID": true
+        },
+        "index": {
+            "TEXTMASTER_PROJECT_ID": true,
+            "FTI_TEXTMASTER_PROJECT": true
+        }
+    },
+    "textmaster_document": {
+        "column": {
+            "document_id": true,
+            "textmaster_id": true,
+            "token": true,
+            "project_id": true,
+            "magento_entity_id": true,
+            "name": true,
+            "status": true,
+            "error_message": true,
+            "created_at": true,
+            "updated_at": true,
+            "start_translation_at": true,
+            "is_applied": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "TEXTMASTER_ID": true,
+            "TEXTMASTER_DOCUMENT_PROJECT_ID_TEXTMASTER_PROJECT_PROJECT_ID": true
+        },
+        "index": {
+            "TEXTMASTER_DOCUMENT_ID": true,
+            "FTI_TEXTMASTER_DOCUMENT": true
+        }
+    },
+    "textmaster_project_attribute": {
+        "column": {
+            "project_attribute_id": true,
+            "project_id": true,
+            "attribute_code": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "TEXTMASTER_PROJECT_ID_ATTRIBUTE_CODE": true,
+            "TEXTMASTER_PROJECT_ATTRIBUTE_PROJECT_ID_TEXTMASTER_PROJECT_PROJECT_ID": true
+        },
+        "index": {
+            "TEXTMASTER_PROJECT_ATTRIBUTE_ID": true
+        }
+    },
+    "textmaster_language_mapping": {
+        "column": {
+            "language_mapping_id": true,
+            "magento_locale_language": true,
+            "api_locale_language": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "TEXTMASTER_LANGUAGE_MAPPING_UNIQUE": true
+        },
+        "index": {
+            "TEXTMASTER_LANGUAGE_MAPPING_ID": true
+        }
+    },
+    "textmaster_translatable_content": {
+        "column": {
+            "translatable_content_id": true,
+            "document_type": true,
+            "attribute_code": true,
+            "default": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "TEXTMASTER_TRANSLATABLE_CONTENT_UNIQUE": true
+        },
+        "index": {
+            "TEXTMASTER_TRANSLATABLE_CONTENT_ID": true
+        }
+    }
+}

@@ -1,0 +1,41 @@
+<?php
+/**
+ * Assign documents template
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+
+use Magento\Backend\Block\Template;
+
+/** @var Template $block */
+?>
+<?php
+$blockGrid = $block->getBlockGrid();
+?>
+<label id="<?= $block->escapeHtmlAttr($blockGrid->getErrorId()); ?>"
+       class="admin__field-error"
+       style="display: none;"
+><?= $block->escapeHtml($blockGrid->getErrorMessage()); ?></label>
+<?= $block->getGridHtml(); ?>
+<input
+    type="hidden"
+    name="<?= $block->escapeHtmlAttr($blockGrid->getInputName()); ?>"
+    data-form-part="<?= $block->escapeHtmlAttr($blockGrid->getInputDataFormPart()); ?>"
+    id="<?= $block->escapeHtmlAttr($blockGrid->getInputId()); ?>"
+    value=""/>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "TextMaster_TextMaster/js/assign-documents": {
+                "selectedDocuments":  <?= /* @noEscape */ $block->getDocumentsJson() ?>,
+                "inputId": "<?= /* @noEscape */ $blockGrid->getInputId() ?>",
+                "gridJsObjectName": <?= /* @noEscape */ '"' . $blockGrid->getJsObjectName() . '"' ?: '{}' ?>
+            }
+        }
+    }
+</script>
+<script>
+    require('mage/apply/main').apply();
+</script>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Config
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <textmaster_textmaster>
+            <authentication>
+                <environment>staging</environment>
+            </authentication>
+            <api>
+                <url>https://%s/integration/connectors-x-api/v1/%s/</url>
+                <tms>textmaster</tms>
+                <url_tms>https://%s/v1/</url_tms>
+            </api>
+            <staging>
+                <url>
+                    <payment_requests>https://app.textmasterstaging.com/clients/payment_requests/new</payment_requests>
+                    <document_page>https://app.textmasterstaging.com/clients/projects/%s/documents/%s</document_page>
+                    <project_page>https://app.textmasterstaging.com/clients/projects/%s</project_page>
+                    <api_templates_page>https://app.textmasterstaging.com/clients/project_templates/api_templates</api_templates_page>
+                </url>
+                <api>
+                    <host>api-dev.acolad.com</host>
+                    <host_tms>api.textmasterstaging.com</host_tms>
+                </api>
+            </staging>
+            <production>
+                <url>
+                    <payment_requests>https://app.textmaster.com/clients/payment_requests/new</payment_requests>
+                    <document_page>https://app.textmaster.com/clients/projects/%s/documents/%s</document_page>
+                    <project_page>https://app.textmaster.com/clients/projects/%s</project_page>
+                    <api_templates_page>https://app.textmaster.com/clients/project_templates/api_templates</api_templates_page>
+                </url>
+                <api>
+                    <host>api.acolad.com</host>
+                    <host_tms>api.textmaster.com</host_tms>
+                </api>
+            </production>
+        </textmaster_textmaster>
+    </default>
+</config>

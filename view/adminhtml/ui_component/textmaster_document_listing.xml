@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Project Document View Listing UI Component
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">textmaster_document_listing.textmaster_document_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="TextMaster\TextMaster\Block\Adminhtml\Edit\LanguageMapping\BackButton"/>
+        </buttons>
+        <spinner>textmaster_document_columns</spinner>
+        <deps>
+            <dep>textmaster_document_listing.textmaster_document_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="textmaster_document_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">document_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+            <filterUrlParams>
+                <param name="project_id">*</param>
+            </filterUrlParams>
+        </settings>
+        <aclResource>TextMaster_TextMaster::project</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="textmaster_document_listing_data_source">
+            <settings>
+                <requestFieldName>document_id</requestFieldName>
+                <primaryFieldName>document_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters">
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+        </filters>
+        <massaction name="listing_massaction">
+            <action name="apply_translation" class="TextMaster\TextMaster\Ui\Component\Control\ApplyTranslationAction">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">apply_translation</item>
+                        <item name="label" xsi:type="string" translate="true">Apply Translation</item>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Apply Translation</item>
+                            <item name="message" xsi:type="string" translate="true">Do you want to apply the translation for the selected attributes?
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="textmaster_document_columns">
+        <settings>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">textmaster_document_listing.textmaster_document_listing.textmaster_document_columns_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+        <selectionsColumn name="ids" sortOrder="0">
+            <settings>
+                <indexField>document_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="document_id" sortOrder="10">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="name" sortOrder="20">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Name</label>
+            </settings>
+        </column>
+        <actionsColumn name="textmaster_id" class="TextMaster\TextMaster\Ui\Component\Listing\Column\DocumentLink" sortOrder="30">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">TextMaster Id</label>
+                <sortable>true</sortable>
+            </settings>
+        </actionsColumn>
+        <column name="status" component="Magento_Ui/js/grid/columns/select" sortOrder="40">
+            <settings>
+                <filter>select</filter>
+                <label translate="true">Status</label>
+                <options class="TextMaster\TextMaster\Model\Config\Source\DocumentStatus"/>
+                <dataType>select</dataType>
+            </settings>
+        </column>
+        <column name="error_message" sortOrder="50">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Error</label>
+            </settings>
+        </column>
+        <column name="created_at" sortOrder="60">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Created At</label>
+            </settings>
+        </column>
+        <column name="updated_at" sortOrder="70">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Last Changed</label>
+            </settings>
+        </column>
+    </columns>
+</listing>

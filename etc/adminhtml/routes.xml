@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * TextMaster Admin Routes
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="textmaster" frontName="textmaster">
+            <module name="TextMaster_TextMaster" before="Magento_Backend" />
+        </route>
+    </router>
+</config>

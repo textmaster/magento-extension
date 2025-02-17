@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Project Edit Layout
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="TextMaster\TextMaster\Block\Adminhtml\Project\ApiTemplatesJs" name="textmaster_project.api_tempates_config_js" template="TextMaster_TextMaster::project/form/api_templates_js.phtml"/>
+            <uiComponent name="textmaster_project_form"/>
+        </referenceContainer>
+    </body>
+</page>

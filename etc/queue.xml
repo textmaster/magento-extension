@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * queue
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/queue.xsd">
+    <broker topic="textmaster.apply_translation" exchange="magento" type="db">
+        <queue name="queueTextMasterApplyTranslation" consumer="consumerTextMasterApplyTranslation" handler="TextMaster\TextMaster\Model\Queues\ApplyTranslation\Consumer::processMessage" consumerInstance="Magento\Framework\MessageQueue\Consumer" />
+    </broker>
+</config>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Project Listing UI Component
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">textmaster_project_listing.textmaster_project_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add New Project</label>
+            </button>
+        </buttons>
+        <spinner>textmaster_project_columns</spinner>
+        <deps>
+            <dep>textmaster_project_listing.textmaster_project_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="textmaster_project_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">project_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>TextMaster_TextMaster::project</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="textmaster_project_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>project_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters">
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+        </filters>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="textmaster_project_columns">
+        <settings>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">textmaster_project_listing.textmaster_project_listing.textmaster_project_columns_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+        <column name="project_id" sortOrder="10">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
+        <column name="name" sortOrder="20">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Name</label>
+            </settings>
+        </column>
+        <actionsColumn name="textmaster_id" class="TextMaster\TextMaster\Ui\Component\Listing\Column\ProjectLink" sortOrder="30">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">TextMaster Id</label>
+                <sortable>true</sortable>
+            </settings>
+        </actionsColumn>
+        <column name="source_store_id" component="Magento_Ui/js/grid/columns/select" sortOrder="40">
+            <settings>
+                <filter>select</filter>
+                <label translate="true">Source Language</label>
+                <options class="TextMaster\TextMaster\Model\Config\Source\StoreLanguage"/>
+                <dataType>select</dataType>
+            </settings>
+        </column>
+        <column name="target_store_id" component="Magento_Ui/js/grid/columns/select" sortOrder="40">
+            <settings>
+                <filter>select</filter>
+                <label translate="true">Target Language</label>
+                <options class="TextMaster\TextMaster\Model\Config\Source\StoreLanguage"/>
+                <dataType>select</dataType>
+            </settings>
+        </column>
+        <column name="document_type" component="Magento_Ui/js/grid/columns/select" sortOrder="50">
+            <settings>
+                <filter>select</filter>
+                <label translate="true">Document Type</label>
+                <options class="TextMaster\TextMaster\Model\Config\Source\DocumentType"/>
+                <dataType>select</dataType>
+            </settings>
+        </column>
+        <column name="number_of_documents" sortOrder="60">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Number of documents</label>
+            </settings>
+        </column>
+        <column name="price" class="TextMaster\TextMaster\Ui\Component\Listing\Column\Price" sortOrder="70">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Price</label>
+            </settings>
+        </column>
+        <column name="status" component="Magento_Ui/js/grid/columns/select" sortOrder="80">
+            <settings>
+                <filter>select</filter>
+                <label translate="true">Status</label>
+                <options class="TextMaster\TextMaster\Model\Config\Source\ProjectStatus"/>
+                <dataType>select</dataType>
+            </settings>
+        </column>
+        <column name="created_at" sortOrder="100">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Created At</label>
+            </settings>
+        </column>
+        <column name="updated_at" sortOrder="110">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Last Changed</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="TextMaster\TextMaster\Ui\Component\Listing\Column\ProjectActions" sortOrder="130">
+            <settings>
+                <indexField>project_id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

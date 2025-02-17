@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * TextMaster_TextMaster ACLs.
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="TextMaster_TextMaster::menu" title="TextMaster">
+                    <resource id="TextMaster_TextMaster::project" title="TextMaster project"/>
+                    <resource id="TextMaster_TextMaster::configuration" title="TextMaster configuration"/>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

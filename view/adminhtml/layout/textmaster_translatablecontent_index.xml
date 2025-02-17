@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Translatable Content Index Layout
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="textmaster_translatablecontent_listing"/>
+        </referenceContainer>
+    </body>
+</page>

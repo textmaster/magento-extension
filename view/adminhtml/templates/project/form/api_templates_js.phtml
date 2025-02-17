@@ -1,0 +1,16 @@
+<?php
+/**
+ * Api Templates Config template
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+
+use TextMaster\TextMaster\Block\Adminhtml\Project\ApiTemplatesJs;
+
+/** @var ApiTemplatesJs $block */
+?>
+<script>
+    window.textmasterApiTemplatesConfig = <?= /* @noEscape */ $block->getApiTemplatesConfigJson(); ?>;
+</script>

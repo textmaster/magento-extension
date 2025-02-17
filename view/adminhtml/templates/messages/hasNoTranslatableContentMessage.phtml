@@ -1,0 +1,21 @@
+<?php
+/**
+ * Has no translatable content message template
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+
+use Magento\Framework\View\Element\Template;
+
+/** @var Template $block */
+?>
+<?= $block->escapeHtml(
+    __(
+        'The module needs at least one translatable attribute for product, category, page and block to work. ' .
+        'Please click on the following link <a href="%1">Manage my Translatable Content</a>.',
+        $block->getData('url')
+    ),
+    ['a']
+);

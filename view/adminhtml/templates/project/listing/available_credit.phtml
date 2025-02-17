@@ -1,0 +1,26 @@
+<?php
+/**
+ * Available Credit Block Template
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+
+use TextMaster\TextMaster\Block\Adminhtml\AvailableCredit;
+?>
+<?php
+/** @var AvailableCredit $block */
+?>
+<div class="row">
+    <div class="col-xs-9">
+        <strong><?= $block->escapeHtml(__('TextMaster Account'));
+        ?>: </strong><?= $block->escapeHtml($block->getEmail()); ?>
+    </div>
+    <div class="col-xs-3 admin__field-label">
+        <strong><?= $block->escapeHtml(__('Credits'));
+        ?>: </strong><?= $block->escapeHtml($block->getAvailableCredit()); ?>
+        <a href="<?= $block->escapeUrl($block->getPaymentRequestsUrl()); ?>"
+           target="_blank"><?= $block->escapeHtml(__('Buy credits')); ?></a>
+    </div>
+</div>

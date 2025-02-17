@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Adminhtml Di TextMaster TextMaster
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\Message\MessageConfigurationsPool">
+        <arguments>
+            <argument name="configurationsMap" xsi:type="array">
+                <item name="hasNoApiTemplateMessage" xsi:type="array">
+                    <item name="renderer" xsi:type="const">\Magento\Framework\View\Element\Message\Renderer\BlockRenderer::CODE</item>
+                    <item name="data" xsi:type="array">
+                        <item name="template" xsi:type="string">TextMaster_TextMaster::messages/hasNoApiTemplateMessage.phtml</item>
+                    </item>
+                </item>
+                <item name="hasNoTranslatableContentMessage" xsi:type="array">
+                    <item name="renderer" xsi:type="const">\Magento\Framework\View\Element\Message\Renderer\BlockRenderer::CODE</item>
+                    <item name="data" xsi:type="array">
+                        <item name="template" xsi:type="string">TextMaster_TextMaster::messages/hasNoTranslatableContentMessage.phtml</item>
+                    </item>
+                </item>
+                <item name="hasNoApiKeyOrApiSecretMessage" xsi:type="array">
+                    <item name="renderer" xsi:type="const">\Magento\Framework\View\Element\Message\Renderer\BlockRenderer::CODE</item>
+                    <item name="data" xsi:type="array">
+                        <item name="template" xsi:type="string">TextMaster_TextMaster::messages/hasNoApiKeyOrApiSecretMessage.phtml</item>
+                    </item>
+                </item>
+                <item name="hasNotAvailableLanguageMappingMessage" xsi:type="array">
+                    <item name="renderer" xsi:type="const">\Magento\Framework\View\Element\Message\Renderer\BlockRenderer::CODE</item>
+                    <item name="data" xsi:type="array">
+                        <item name="template" xsi:type="string">TextMaster_TextMaster::messages/hasNotAvailableLanguageMappingMessage.phtml</item>
+                    </item>
+                </item>
+                <item name="hasNoMultiStoresMessage" xsi:type="array">
+                    <item name="renderer" xsi:type="const">\Magento\Framework\View\Element\Message\Renderer\BlockRenderer::CODE</item>
+                    <item name="data" xsi:type="array">
+                        <item name="template" xsi:type="string">TextMaster_TextMaster::messages/hasNoMultiStoresMessage.phtml</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

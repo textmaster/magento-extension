@@ -1,0 +1,48 @@
+{
+    "name": "textmaster/module-textmaster",
+    "description": "TextMaster Module for Magento 2",
+    "homepage": "https://fr.textmaster.com/",
+    "keywords": [
+        "textmastere",
+        "textmaster",
+        "translation",
+        "translate",
+        "category",
+        "categories",
+        "product",
+        "products",
+        "cms",
+        "page",
+        "pages",
+        "block",
+        "blocks",
+        "magento"
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo.magento.com/"
+        }
+    ],
+    "require": {
+        "php": "~7.1.3||~7.2.0||~7.3.0||~7.4.0||~8.1.0",
+        "magento/framework": ">=102.0",
+        "magento/module-backend": ">=101.0",
+        "magento/module-cms": ">=103.0",
+        "magento/module-catalog": ">=103.0",
+        "magento/module-config": ">=101.1",
+        "magento/module-eav": ">=102.0",
+        "magento/module-store": ">=101.0"
+    },
+    "type": "magento2-module",
+    "license": "OSL-3.0",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "TextMaster\\TextMaster\\": ""
+        }
+    },
+    "version": "1.0.6"
+}

@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * TextMaster_TextMaster menu admin configuration.
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add
+            id="TextMaster_TextMaster::textmaster_menu"
+            title="TextMaster"
+            translate="title"
+            module="TextMaster_TextMaster"
+            sortOrder="100"
+            resource="TextMaster_TextMaster::menu"/>
+        <add
+            id="TextMaster_TextMaster::project"
+            title="Project"
+            translate="title"
+            module="TextMaster_TextMaster"
+            parent="TextMaster_TextMaster::textmaster_menu"
+            sortOrder="10"
+            dependsOnModule="TextMaster_TextMaster"
+            resource="TextMaster_TextMaster::project"/>
+        <add
+            id="TextMaster_TextMaster::project_create"
+            title="Create"
+            translate="title"
+            module="TextMaster_TextMaster"
+            parent="TextMaster_TextMaster::project"
+            sortOrder="10"
+            dependsOnModule="TextMaster_TextMaster"
+            action="textmaster/project/new"
+            resource="TextMaster_TextMaster::project"/>
+        <add
+            id="TextMaster_TextMaster::project_manage"
+            title="Manage"
+            translate="title"
+            module="TextMaster_TextMaster"
+            parent="TextMaster_TextMaster::project"
+            sortOrder="20"
+            dependsOnModule="TextMaster_TextMaster"
+            action="textmaster/project"
+            resource="TextMaster_TextMaster::project"/>
+
+        <add
+            id="TextMaster_TextMaster::configuration"
+            title="Configuration"
+            translate="title"
+            module="TextMaster_TextMaster"
+            parent="TextMaster_TextMaster::textmaster_menu"
+            sortOrder="10"
+            dependsOnModule="TextMaster_TextMaster"
+            resource="TextMaster_TextMaster::configuration"/>
+        <add
+            id="TextMaster_TextMaster::configuration_authentication"
+            title="Authentication"
+            translate="title"
+            module="TextMaster_TextMaster"
+            parent="TextMaster_TextMaster::configuration"
+            sortOrder="10"
+            dependsOnModule="TextMaster_TextMaster"
+            action="admin/system_config/edit/section/textmaster_textmaster"
+            resource="TextMaster_TextMaster::configuration"/>
+        <add
+            id="TextMaster_TextMaster::configuration_language_mapping"
+            title="Language Mapping"
+            translate="title"
+            module="TextMaster_TextMaster"
+            parent="TextMaster_TextMaster::configuration"
+            sortOrder="20"
+            dependsOnModule="TextMaster_TextMaster"
+            action="textmaster/languagemapping"
+            resource="TextMaster_TextMaster::configuration"/>
+        <add
+            id="TextMaster_TextMaster::configuration_content_selection"
+            title="Translatable Content Selection"
+            translate="title"
+            module="TextMaster_TextMaster"
+            parent="TextMaster_TextMaster::configuration"
+            sortOrder="30"
+            dependsOnModule="TextMaster_TextMaster"
+            action="textmaster/translatablecontent/index"
+            resource="TextMaster_TextMaster::configuration"/>
+    </menu>
+</config>

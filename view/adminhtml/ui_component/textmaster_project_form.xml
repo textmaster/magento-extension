@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Project Create Form
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">textmaster_project_form.textmaster_project_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Language Mapping Form</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="TextMaster\TextMaster\Block\Adminhtml\Edit\LanguageMapping\SaveButton"/>
+            <button name="back" class="TextMaster\TextMaster\Block\Adminhtml\Edit\LanguageMapping\BackButton"/>
+        </buttons>
+        <namespace>textmaster_project_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>textmaster_project_form.textmaster_project_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="textmaster_project_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <aclResource>TextMaster_TextMaster::project</aclResource>
+        <dataProvider class="TextMaster\TextMaster\Ui\DataProvider\Project\DataProvider" name="textmaster_project_form_data_source">
+            <settings>
+                <requestFieldName>project_id</requestFieldName>
+                <primaryFieldName>project_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label/>
+            <dataScope/>
+        </settings>
+
+        <field name="project_id" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>project_id</dataScope>
+            </settings>
+        </field>
+
+        <field name="name" formElement="input" sortOrder="10">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <dataScope>name</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="document_type" formElement="select" sortOrder="20">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Document Type</label>
+                <dataScope>document_type</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="textmaster-required-document" xsi:type="boolean">true</rule>
+                </validation>
+                <switcherConfig>
+                    <rules>
+                        <rule name="0">
+                            <value>product</value>
+                            <actions>
+                                <action name="0">
+                                    <target>textmaster_project_form.textmaster_project_form.select_attributes.product_attributes</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="1">
+                                    <target>textmaster_project_form.textmaster_project_form.select_attributes.category_attributes</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="2">
+                                    <target>textmaster_project_form.textmaster_project_form.select_attributes.page_attributes</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="3">
+                                    <target>textmaster_project_form.textmaster_project_form.select_attributes.block_attributes</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="4">
+                                    <target>textmaster_project_form.textmaster_project_form.select_products</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="5">
+                                    <target>textmaster_project_form.textmaster_project_form.select_categories</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="6">
+                                    <target>textmaster_project_form.textmaster_project_form.select_pages</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="7">
+                                    <target>textmaster_project_form.textmaster_project_form.select_blocks</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="1">
+                            <value>category</value>
+                            <actions>
+                                <action name="0">
+                                    <target>textmaster_project_form.textmaster_project_form.select_attributes.product_attributes</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>textmaster_project_form.textmaster_project_form.select_attributes.category_attributes</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="2">
+                                    <target>textmaster_project_form.textmaster_project_form.select_attributes.page_attributes</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="3">
+                                    <target>textmaster_project_form.textmaster_project_form.select_attributes.block_attributes</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="4">
+                                    <target>textmaster_project_form.textmaster_project_form.select_products</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="5">
+                                    <target>textmaster_project_form.textmaster_project_form.select_categories</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="6">
+                                    <target>textmaster_project_form.textmaster_project_form.select_pages</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="7">
+                                    <target>textmaster_project_form.textmaster_project_form.select_blocks</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="2">
+                            <value>page</value>
+                            <actions>
+                                <action name="0">
+                                    <target>textmaster_project_form.textmaster_project_form.select_attributes.product_attributes</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>textmaster_project_form.textmaster_project_form.select_attributes.category_attributes</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="2">
+                                    <target>textmaster_project_form.textmaster_project_form.select_attributes.page_attributes</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="3">
+                                    <target>textmaster_project_form.textmaster_project_form.select_attributes.block_attributes</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="4">
+                                    <target>textmaster_project_form.textmaster_project_form.select_products</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="5">
+                                    <target>textmaster_project_form.textmaster_project_form.select_categories</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="6">
+                                    <target>textmaster_project_form.textmaster_project_form.select_pages</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="7">
+                                    <target>textmaster_project_form.textmaster_project_form.select_blocks</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="3">
+                            <value>block</value>
+                            <actions>
+                                <action name="0">
+                                    <target>textmaster_project_form.textmaster_project_form.select_attributes.product_attributes</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>textmaster_project_form.textmaster_project_form.select_attributes.category_attributes</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="2">
+                                    <target>textmaster_project_form.textmaster_project_form.select_attributes.page_attributes</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="3">
+                                    <target>textmaster_project_form.textmaster_project_form.select_attributes.block_attributes</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="4">
+                                    <target>textmaster_project_form.textmaster_project_form.select_products</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="5">
+                                    <target>textmaster_project_form.textmaster_project_form.select_categories</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="6">
+                                    <target>textmaster_project_form.textmaster_project_form.select_pages</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="7">
+                                    <target>textmaster_project_form.textmaster_project_form.select_blocks</target>
+                                    <callback>show</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                    </rules>
+                    <enabled>true</enabled>
+                </switcherConfig>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="TextMaster\TextMaster\Model\Config\Source\DocumentType"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="source_store_id" component="TextMaster_TextMaster/js/form/element/select-source-store-id" formElement="select" sortOrder="40">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Source Language</label>
+                <dataScope>source_store_id</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="TextMaster\TextMaster\Model\Config\Source\StoreLanguage"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <dynamicRows name="targets" sortOrder="50">
+            <settings>
+                <addButtonLabel translate="true">Add Target Language</addButtonLabel>
+                <additionalClasses>
+                    <class name="admin__field-wide">true</class>
+                </additionalClasses>
+                <dndConfig>
+                    <param name="enabled" xsi:type="boolean">false</param>
+                </dndConfig>
+                <componentType>dynamicRows</componentType>
+                <defaultRecord>true</defaultRecord>
+            </settings>
+            <container name="record" component="Magento_Ui/js/dynamic-rows/record">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="isTemplate" xsi:type="boolean">true</item>
+                        <item name="is_collection" xsi:type="boolean">true</item>
+                        <item name="componentType" xsi:type="string">container</item>
+                    </item>
+                </argument>
+
+                <field name="target_store_id" component="TextMaster_TextMaster/js/form/element/select-target-store-id" formElement="select" sortOrder="10">
+                    <settings>
+                        <dataType>text</dataType>
+                        <label translate="true">Target Language</label>
+                        <dataScope>target_store_id</dataScope>
+                        <validation>
+                            <rule name="required-entry" xsi:type="boolean">true</rule>
+                            <rule name="textmaster-unique-target-store-id" xsi:type="boolean">true</rule>
+                        </validation>
+                    </settings>
+                </field>
+
+                <field name="template_id" component="TextMaster_TextMaster/js/form/element/select-template-id" formElement="select" sortOrder="20">
+                    <settings>
+                        <dataType>text</dataType>
+                        <label translate="true">API Template</label>
+                        <dataScope>template_id</dataScope>
+                        <validation>
+                            <rule name="required-entry" xsi:type="boolean">true</rule>
+                        </validation>
+                    </settings>
+                </field>
+                <actionDelete name="actionDelete" component="Magento_Ui/js/dynamic-rows/action-delete" template="ui/dynamic-rows/cells/action-delete">
+                    <settings>
+                        <dataType>text</dataType>
+                        <label>Action</label>
+                        <componentType>actionDelete</componentType>
+                    </settings>
+                </actionDelete>
+            </container>
+        </dynamicRows>
+    </fieldset>
+    <fieldset name="select_products" component="TextMaster_TextMaster/js/form/components/fieldset" sortOrder="10">
+        <settings>
+            <label translate="true">Select Products</label>
+            <dataScope/>
+        </settings>
+        <htmlContent name="assign_products_html_content" sortOrder="10">
+            <block name="assign_products_block" class="TextMaster\TextMaster\Block\Adminhtml\Project\AssignProducts"/>
+        </htmlContent>
+    </fieldset>
+    <fieldset name="select_categories" component="TextMaster_TextMaster/js/form/components/fieldset" sortOrder="20">
+        <settings>
+            <label translate="true">Select Categories</label>
+            <dataScope/>
+        </settings>
+        <field name="category_ids" component="Magento_Catalog/js/components/new-category" sortOrder="10" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">true</item>
+                    <item name="showCheckbox" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="levelsVisibility" xsi:type="number">1</item>
+                    <item name="source" xsi:type="string">page</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="textmaster-category-ids-required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+                <label translate="true"/>
+                <dataScope>category_ids</dataScope>
+                <componentType>field</componentType>
+                <listens>
+                    <link name="${ $.namespace }.${ $.namespace }:responseData">setParsed</link>
+                </listens>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Catalog\Ui\Component\Product\Form\Categories\Options"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="select_pages" component="TextMaster_TextMaster/js/form/components/fieldset" sortOrder="30">
+        <settings>
+            <label translate="true">Select Pages</label>
+            <dataScope/>
+        </settings>
+        <htmlContent name="assign_pages_html_content" sortOrder="10">
+            <block name="assign_pages_block" class="TextMaster\TextMaster\Block\Adminhtml\Project\AssignPages"/>
+        </htmlContent>
+    </fieldset>
+    <fieldset name="select_blocks" component="TextMaster_TextMaster/js/form/components/fieldset" sortOrder="40">
+        <settings>
+            <label translate="true">Select Blocks</label>
+            <dataScope/>
+        </settings>
+        <htmlContent name="assign_blocks_html_content" sortOrder="10">
+            <block name="assign_blocks_block" class="TextMaster\TextMaster\Block\Adminhtml\Project\AssignBlocks"/>
+        </htmlContent>
+    </fieldset>
+    <fieldset name="select_attributes" sortOrder="50">
+        <settings>
+            <label translate="true">Select Attributes</label>
+            <dataScope/>
+        </settings>
+        <field name="product_attributes" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">TextMaster\TextMaster\Model\Config\Source\ProductAttributes</item>
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">1</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">checkboxset</item>
+                    <item name="label" xsi:type="string" translate="true">Product Attributes</item>
+                    <item name="source" xsi:type="string">product_attributes</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <dataScope>product_attributes</dataScope>
+            </settings>
+        </field>
+        <field name="category_attributes" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">TextMaster\TextMaster\Model\Config\Source\CategoryAttributes</item>
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">1</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">checkboxset</item>
+                    <item name="label" xsi:type="string" translate="true">Category Attributes</item>
+                    <item name="source" xsi:type="string">category_attributes</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <dataScope>category_attributes</dataScope>
+            </settings>
+        </field>
+        <field name="page_attributes" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">TextMaster\TextMaster\Model\Config\Source\PageAttributes</item>
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">1</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">checkboxset</item>
+                    <item name="label" xsi:type="string" translate="true">Page Attributes</item>
+                    <item name="source" xsi:type="string">page_attributes</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <dataScope>page_attributes</dataScope>
+            </settings>
+        </field>
+        <field name="block_attributes" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">TextMaster\TextMaster\Model\Config\Source\BlockAttributes</item>
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">1</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">checkboxset</item>
+                    <item name="label" xsi:type="string" translate="true">Block Attributes</item>
+                    <item name="source" xsi:type="string">block_attributes</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <dataScope>block_attributes</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+</form>

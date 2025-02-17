@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Di TextMaster TextMaster
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Framework\Serialize\SerializerInterface"          type="Magento\Framework\Serialize\Serializer\Json" />
+    <preference for="TextMaster\TextMaster\Api\Data\ProjectSearchResultsInterface" type="TextMaster\TextMaster\Model\ProjectSearchResults" />
+    <preference for="TextMaster\TextMaster\Api\Data\ProjectInterface"              type="TextMaster\TextMaster\Model\Project" />
+    <preference for="TextMaster\TextMaster\Api\ProjectRepositoryInterface"         type="TextMaster\TextMaster\Model\ProjectRepository" />
+    <preference for="TextMaster\TextMaster\Api\Data\LanguageMappingSearchResultsInterface" type="TextMaster\TextMaster\Model\LanguageMappingSearchResults" />
+    <preference for="TextMaster\TextMaster\Api\Data\LanguageMappingInterface"              type="TextMaster\TextMaster\Model\LanguageMapping" />
+    <preference for="TextMaster\TextMaster\Api\LanguageMappingRepositoryInterface"         type="TextMaster\TextMaster\Model\LanguageMappingRepository" />
+    <preference for="TextMaster\TextMaster\Api\Data\TranslatableContentSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="TextMaster\TextMaster\Api\Data\TranslatableContentInterface"              type="TextMaster\TextMaster\Model\TranslatableContent" />
+    <preference for="TextMaster\TextMaster\Api\Data\AttributeViewInterface"                    type="TextMaster\TextMaster\Model\AttributeView" />
+    <preference for="TextMaster\TextMaster\Api\TranslatableContentRepositoryInterface"         type="TextMaster\TextMaster\Model\TranslatableContentRepository" />
+    <preference for="TextMaster\TextMaster\Api\Data\DocumentSearchResultsInterface" type="TextMaster\TextMaster\Model\DocumentSearchResults" />
+    <preference for="TextMaster\TextMaster\Api\Data\DocumentInterface"              type="TextMaster\TextMaster\Model\Document" />
+    <preference for="TextMaster\TextMaster\Api\DocumentRepositoryInterface"         type="TextMaster\TextMaster\Model\DocumentRepository" />
+    <preference for="TextMaster\TextMaster\Api\Data\ProjectAttributeSearchResultsInterface" type="TextMaster\TextMaster\Model\ProjectAttributeSearchResults" />
+    <preference for="TextMaster\TextMaster\Api\Data\ProjectAttributeInterface"              type="TextMaster\TextMaster\Model\ProjectAttribute" />
+    <preference for="TextMaster\TextMaster\Api\ProjectAttributeRepositoryInterface"         type="TextMaster\TextMaster\Model\ProjectAttributeRepository" />
+    <preference for="TextMaster\TextMaster\Api\CallbackInterface" type="TextMaster\TextMaster\Model\Callback"/>
+    <preference for="TextMaster\TextMaster\Api\Data\CallbackResponseInterface" type="TextMaster\TextMaster\Model\CallbackResponse"/>
+    <preference for="TextMaster\TextMaster\Api\MessageInterface" type="TextMaster\TextMaster\Model\Queues\ApplyTranslation\Message"/>
+    <preference for="TextMaster\TextMaster\Api\ConsumerInterface" type="TextMaster\TextMaster\Model\Queues\ApplyTranslation\Consumer"/>
+    <type name="Magento\Framework\Model\Entity\RepositoryFactory">
+        <arguments>
+            <argument name="entities" xsi:type="array">
+                <item name="TextMaster\TextMaster\Api\Data\ProjectInterface" xsi:type="string">TextMaster\TextMaster\Api\Data\ProjectInterface</item>
+                <item name="TextMaster\TextMaster\Api\Data\LanguageMappingInterface" xsi:type="string">TextMaster\TextMaster\Api\Data\LanguageMappingInterface</item>
+                <item name="TextMaster\TextMaster\Api\Data\TranslatableContentInterface" xsi:type="string">TextMaster\TextMaster\Api\Data\TranslatableContentInterface</item>
+                <item name="TextMaster\TextMaster\Api\Data\DocumentInterface" xsi:type="string">TextMaster\TextMaster\Api\Data\DocumentInterface</item>
+                <item name="TextMaster\TextMaster\Api\Data\ProjectAttributeInterface" xsi:type="string">TextMaster\TextMaster\Api\Data\ProjectAttributeInterface</item>
+                <item name="TextMaster\TextMaster\Api\Data\TranslatableContentInterface" xsi:type="string">TextMaster\TextMaster\Api\Data\TranslatableContentInterface</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="TextMaster\TextMaster\Api\Data\ProjectInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="const">TextMaster\TextMaster\Api\Data\ProjectInterface::TABLE_NAME</item>
+                    <item name="identifierField" xsi:type="const">TextMaster\TextMaster\Api\Data\ProjectInterface::FIELD_PROJECT_ID</item>
+                </item>
+                <item name="TextMaster\TextMaster\Api\Data\LanguageMappingInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="const">TextMaster\TextMaster\Api\Data\LanguageMappingInterface::TABLE_NAME</item>
+                    <item name="identifierField" xsi:type="const">TextMaster\TextMaster\Api\Data\LanguageMappingInterface::FIELD_LANGUAGE_MAPPING_ID</item>
+                </item>
+                <item name="TextMaster\TextMaster\Api\Data\TranslatableContentInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="const">TextMaster\TextMaster\Api\Data\TranslatableContentInterface::TABLE_NAME</item>
+                    <item name="identifierField" xsi:type="const">TextMaster\TextMaster\Api\Data\TranslatableContentInterface::FIELD_TRANSLATABLE_CONTENT_ID</item>
+                </item>
+                <item name="TextMaster\TextMaster\Api\Data\AttributeViewInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="const">TextMaster\TextMaster\Api\Data\AttributeViewInterface::TABLE_NAME</item>
+                    <item name="identifierField" xsi:type="const">TextMaster\TextMaster\Api\Data\AttributeViewInterface::FIELD_ATTRIBUTE_VIEW_ID</item>
+                </item>
+                <item name="TextMaster\TextMaster\Api\Data\DocumentInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="const">TextMaster\TextMaster\Api\Data\DocumentInterface::TABLE_NAME</item>
+                    <item name="identifierField" xsi:type="const">TextMaster\TextMaster\Api\Data\DocumentInterface::FIELD_DOCUMENT_ID</item>
+                </item>
+                <item name="TextMaster\TextMaster\Api\Data\ProjectAttributeInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="const">TextMaster\TextMaster\Api\Data\ProjectAttributeInterface::TABLE_NAME</item>
+                    <item name="identifierField" xsi:type="const">TextMaster\TextMaster\Api\Data\ProjectAttributeInterface::FIELD_PROJECT_ATTRIBUTE_ID</item>
+                </item>
+                <item name="TextMaster\TextMaster\Api\Data\TranslatableContentInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="const">TextMaster\TextMaster\Api\Data\TranslatableContentInterface::TABLE_NAME</item>
+                    <item name="identifierField" xsi:type="const">TextMaster\TextMaster\Api\Data\TranslatableContentInterface::FIELD_TRANSLATABLE_CONTENT_ID</item>
+                </item>
+                <item name="TextMaster\TextMaster\Api\Data\AttributeViewInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="const">TextMaster\TextMaster\Api\Data\AttributeViewInterface::TABLE_NAME</item>
+                    <item name="identifierField" xsi:type="const">TextMaster\TextMaster\Api\Data\AttributeViewInterface::FIELD_ATTRIBUTE_VIEW_ID</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\HydratorPool">
+        <arguments>
+            <argument name="hydrators" xsi:type="array">
+                <item name="TextMaster\TextMaster\Api\Data\ProjectInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+                <item name="TextMaster\TextMaster\Api\Data\LanguageMappingInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+                <item name="TextMaster\TextMaster\Api\Data\TranslatableContentInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+                <item name="TextMaster\TextMaster\Api\Data\AttributeViewInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+                <item name="TextMaster\TextMaster\Api\Data\DocumentInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+                <item name="TextMaster\TextMaster\Api\Data\ProjectAttributeInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+                <item name="TextMaster\TextMaster\Api\Data\TranslatableContentInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+                <item name="TextMaster\TextMaster\Api\Data\AttributeViewInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="textmaster_project_listing_data_source" xsi:type="string">TextMaster\TextMaster\Model\ResourceModel\Project\Grid\Collection</item>
+                <item name="textmaster_document_listing_data_source" xsi:type="string">TextMaster\TextMaster\Model\ResourceModel\Document\Grid\Collection</item>
+                <item name="textmaster_languagemapping_listing_data_source" xsi:type="string">TextMaster\TextMaster\Model\ResourceModel\LanguageMapping\Grid\Collection</item>
+                <item name="textmaster_languagemapping_form_data_source" xsi:type="string">TextMaster\TextMaster\Model\ResourceModel\LanguageMapping\Grid\Collection</item>
+                <item name="textmaster_translatablecontent_listing_data_source" xsi:type="string">TextMaster\TextMaster\Model\ResourceModel\AttributeView\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="TextMaster\TextMaster\Model\ResourceModel\Project\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">textmaster_project</argument>
+            <argument name="eventPrefix" xsi:type="string">textmaster_project_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">textmaster_project_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">TextMaster\TextMaster\Model\ResourceModel\Project</argument>
+        </arguments>
+    </type>
+    <type name="TextMaster\TextMaster\Model\ResourceModel\Document\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">textmaster_document</argument>
+            <argument name="eventPrefix" xsi:type="string">textmaster_document_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">textmaster_document_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">TextMaster\TextMaster\Model\ResourceModel\Document</argument>
+        </arguments>
+    </type>
+    <type name="TextMaster\TextMaster\Model\ResourceModel\LanguageMapping\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">textmaster_language_mapping</argument>
+            <argument name="eventPrefix" xsi:type="string">textmaster_language_mapping_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">textmaster_language_mapping_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">TextMaster\TextMaster\Model\ResourceModel\LanguageMapping</argument>
+        </arguments>
+    </type>
+    <type name="TextMaster\TextMaster\Model\ResourceModel\TranslatableContent\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">textmaster_translatable_content</argument>
+            <argument name="eventPrefix" xsi:type="string">textmaster_translatable_content_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">textmaster_translatable_content_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">TextMaster\TextMaster\Model\ResourceModel\TranslatableContent</argument>
+        </arguments>
+    </type>
+    <type name="TextMaster\TextMaster\Model\ResourceModel\AttributeView\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">textmaster_attribute_view</argument>
+            <argument name="eventPrefix" xsi:type="string">textmaster_attribute_view_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">textmaster_attribute_view_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">TextMaster\TextMaster\Model\ResourceModel\AttributeView</argument>
+        </arguments>
+    </type>
+    <virtualType name="TextMaster\TextMaster\Model\Config\Source\ProductAttributes" type="TextMaster\TextMaster\Model\Config\Source\Attributes">
+        <arguments>
+            <argument name="documentType" xsi:type="string">product</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="TextMaster\TextMaster\Model\Config\Source\CategoryAttributes" type="TextMaster\TextMaster\Model\Config\Source\Attributes">
+        <arguments>
+            <argument name="documentType" xsi:type="string">category</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="TextMaster\TextMaster\Model\Config\Source\PageAttributes" type="TextMaster\TextMaster\Model\Config\Source\Attributes">
+        <arguments>
+            <argument name="documentType" xsi:type="string">page</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="TextMaster\TextMaster\Model\Config\Source\BlockAttributes" type="TextMaster\TextMaster\Model\Config\Source\Attributes">
+        <arguments>
+            <argument name="documentType" xsi:type="string">block</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="textmasterLogger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="handlers"  xsi:type="array">
+                <item name="debug" xsi:type="object">TextMaster\TextMaster\Logger\Handler\Custom</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="TextMaster\TextMaster\Helper\Connector">
+        <arguments>
+            <argument name="textmasterLogger" xsi:type="object">textmasterLogger</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="textmaster_update_project_status_command" xsi:type="object">TextMaster\TextMaster\Console\Command\UpdateProjectStatus</item>
+                <item name="textmaster_update_document_status_command" xsi:type="object">TextMaster\TextMaster\Console\Command\UpdateDocumentStatus</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\InventorySales\Setup\Operation\AssignWebsiteToDefaultStock">
+        <plugin name="textmaster_inventory_sales_reinit_stores" type="TextMaster\TextMaster\Plugin\AssignWebsiteToDefaultStockPlugin" />
+    </type>
+</config>

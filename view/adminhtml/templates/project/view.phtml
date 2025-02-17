@@ -1,0 +1,99 @@
+<?php
+use TextMaster\TextMaster\Block\Adminhtml\ProjectView;
+
+/** @var ProjectView $block */
+?>
+<?php $project = $block->getProjectById(); ?>
+<div class="row">
+    <div class="col-xs-4">
+        <div class="admin__page-section-item-content">
+            <table class="admin__table-secondary order-information-table">
+                <tbody>
+                    <tr>
+                        <th><strong><?= $block->escapeHtml(__('Project Name')); ?></strong></th>
+                        <td><?= $block->escapeHtml($project->getName()); ?></td>
+                    </tr>
+                    <tr>
+                        <th><strong><?= $block->escapeHtml(__('Status')); ?></strong></th>
+                        <td><?= $block->escapeHtml(__($project->getStatus())); ?></td>
+                    </tr>
+                    <tr>
+                        <th><strong><?= $block->escapeHtml(__('Source Language')); ?></strong></th>
+                        <td><?= $block->escapeHtml($block->getSourceLanguage()); ?></td>
+                    </tr>
+                    <tr>
+                        <th><strong><?= $block->escapeHtml(__('Created At')); ?></strong></th>
+                        <td><?= $block->escapeHtml($block->getCreatedAtFormatted()); ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-xs-4">
+        <div class="admin__page-section-item-content">
+            <table class="admin__table-secondary order-information-table">
+                <tbody>
+                    <tr>
+                        <th><strong><?= $block->escapeHtml(__('Document Type')); ?></strong></th>
+                        <td><?= $block->escapeHtml($project->getDocumentType()); ?></td>
+                    </tr>
+                    <tr>
+                        <th><strong><?= $block->escapeHtml(__('Template')); ?></strong></th>
+                        <td><?= $block->escapeHtml($block->getTextMasterTemplateName()); ?></td>
+                    </tr>
+                    <tr>
+                        <th><strong><?= $block->escapeHtml(__('Target Language')); ?></strong></th>
+                        <td><?= $block->escapeHtml($block->getTargetLanguage()); ?></td>
+                    </tr>
+                    <tr>
+                        <th><strong><?= $block->escapeHtml(__('Updated At')); ?></strong></th>
+                        <td><?= $block->escapeHtml($block->getUpdatedAtFormatted()); ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-xs-4">
+        <div class="admin__page-section-item-content">
+            <table class="admin__table-secondary order-information-table">
+                <tbody>
+                    <tr>
+                        <th><strong><?= $block->escapeHtml(__('Number Of Documents')); ?></strong></th>
+                        <td><?= $block->escapeHtml($project->getNumberOfDocuments()); ?></td>
+                    </tr>
+                    <tr>
+                        <th><strong><?= $block->escapeHtml(__('Price')); ?></strong></th>
+                        <td><?= $block->escapeHtml($block->getPrice()); ?></td>
+                    </tr>
+                    <tr>
+                        <th><strong><?= $block->escapeHtml(__('Link To Textmaster')); ?></strong></th>
+                        <td><a href="<?= $block->escapeHtml($block->getProjectPageUrl()); ?>"
+                               target="_blank"><?= $block->escapeHtml(__('See project on textmaster')); ?></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-xl-11">
+        <p><em><?= $block->escapeHtml(
+            __(
+                '* Translation can only be applied on documents which are "in_review" status'
+            )
+        ); ?></em></p>
+    </div>
+    <div class="col-xl-1">
+        <?php if ($block->showValidateQuoteButton()): ?>
+            <form action="<?= $block->escapeHtmlAttr($block->getValidateQuoteAction()); ?>">
+                <p><button class="primary" ><?= $block->escapeHtml(__('Validate Quote')); ?></button></p>
+            </form>
+        <?php endif; ?>
+        <?php if ($block->showApplyTranslationButton()): ?>
+            <form action="<?= $block->escapeHtmlAttr($block->getApplyTranslationAction()); ?>">
+                <p><button class="primary" ><?= $block->escapeHtml(__('Apply Translation')); ?></button></p>
+            </form>
+        <?php endif; ?>
+    </div>
+</div>

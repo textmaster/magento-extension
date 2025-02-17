@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Language Mapping Listing UI Component
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">textmaster_languagemapping_listing.textmaster_languagemapping_listing_data_source</item>
+        </item>
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="label" xsi:type="string" translate="true">Add New Language Mapping</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/*/new</item>
+            </item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>textmaster_languagemapping_columns</spinner>
+        <deps>
+            <dep>textmaster_languagemapping_listing.textmaster_languagemapping_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="textmaster_languagemapping_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">language_mapping_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>TextMaster_TextMaster::configuration</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="textmaster_languagemapping_listing_data_source">
+            <settings>
+                <requestFieldName>language_mapping_id</requestFieldName>
+                <primaryFieldName>language_mapping_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters">
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+        </filters>
+        <massaction name="listing_massaction">
+            <action name="delete">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">delete</item>
+                        <item name="label" xsi:type="string" translate="true">Delete</item>
+                        <item name="url" xsi:type="url" path="*/*/massDelete"/>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Delete language mapping</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure to delete?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="textmaster_languagemapping_columns">
+        <selectionsColumn name="ids" sortOrder="0">
+            <settings>
+                <indexField>language_mapping_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="language_mapping_id" sortOrder="10">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="magento_locale_language" component="Magento_Ui/js/grid/columns/select" sortOrder="20">
+            <settings>
+                <filter>select</filter>
+                <label translate="true">Magento Locale Language</label>
+                <options class="TextMaster\TextMaster\Model\Config\Source\MagentoLocaleLanguage"/>
+                <dataType>select</dataType>
+            </settings>
+        </column>
+        <column name="api_locale_language" component="Magento_Ui/js/grid/columns/select" sortOrder="30">
+            <settings>
+                <filter>select</filter>
+                <label translate="true">TextMaster Locale Language</label>
+                <options class="TextMaster\TextMaster\Model\Config\Source\ApiLocaleLanguage"/>
+                <dataType>select</dataType>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="TextMaster\TextMaster\Ui\Component\Listing\Column\LanguageMappingActions" sortOrder="200">
+            <settings>
+                <indexField>language_mapping_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

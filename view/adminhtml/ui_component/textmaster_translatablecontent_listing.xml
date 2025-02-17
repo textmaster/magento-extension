@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Translatable Content Listing UI Component
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">textmaster_translatablecontent_listing.textmaster_translatablecontent_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>textmaster_translatablecontent_columns</spinner>
+        <deps>
+            <dep>textmaster_translatablecontent_listing.textmaster_translatablecontent_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="textmaster_translatablecontent_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">attribute_view_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>TextMaster_TextMaster::configuration</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="textmaster_translatablecontent_listing_data_source">
+            <settings>
+                <requestFieldName>attribute_view_id</requestFieldName>
+                <primaryFieldName>attribute_view_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters">
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+        </filters>
+        <massaction name="listing_massaction">
+            <action name="enable_to_translate">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">enable_to_translate</item>
+                        <item name="label" xsi:type="string" translate="true">Enable To Translate</item>
+                        <item name="url" xsi:type="url" path="*/*/enableToTranslate"/>
+                    </item>
+                </argument>
+            </action>
+            <action name="enable_to_translate_and_select_by_default">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">enable_to_translate_and_select_by_default</item>
+                        <item name="label" xsi:type="string" translate="true">Enable To Translate And Select By Default</item>
+                        <item name="url" xsi:type="url" path="*/*/enableToTranslateAndSelectByDefault"/>
+                    </item>
+                </argument>
+            </action>
+            <action name="disable_select_by_default">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">disable_select_by_default</item>
+                        <item name="label" xsi:type="string" translate="true">Disable Select By Default</item>
+                        <item name="url" xsi:type="url" path="*/*/disableSelectByDefault"/>
+                    </item>
+                </argument>
+            </action>
+            <action name="disable_to_translate_and_disable_select_by_default">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">disable_to_translate</item>
+                        <item name="label" xsi:type="string" translate="true">Disable To Translate</item>
+                        <item name="url" xsi:type="url" path="*/*/disableToTranslate"/>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="textmaster_translatablecontent_columns">
+        <settings>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">textmaster_translatablecontent_listing.textmaster_translatablecontent_listing.textmaster_translatablecontent_columns_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+        <selectionsColumn name="ids" sortOrder="0">
+            <settings>
+                <indexField>attribute_view_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="attribute_view_id" sortOrder="10">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="document_type" component="Magento_Ui/js/grid/columns/select" sortOrder="20">
+            <settings>
+                <filter>select</filter>
+                <label translate="true">Document Type</label>
+                <options class="TextMaster\TextMaster\Model\Config\Source\DocumentType"/>
+                <dataType>select</dataType>
+            </settings>
+        </column>
+        <column name="attribute_code" class="TextMaster\TextMaster\Ui\Component\Listing\Column\AttributeLabel" sortOrder="30">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Attribute Code</label>
+            </settings>
+        </column>
+        <column name="translatable" component="Magento_Ui/js/grid/columns/select" sortOrder="40">
+            <settings>
+                <filter>select</filter>
+                <label translate="true">Translatable</label>
+                <options class="Magento\Config\Model\Config\Source\Yesno"/>
+                <dataType>select</dataType>
+            </settings>
+        </column>
+        <column name="select_by_default" component="Magento_Ui/js/grid/columns/select" sortOrder="50">
+            <settings>
+                <filter>select</filter>
+                <label translate="true">Select By Default</label>
+                <options class="Magento\Config\Model\Config\Source\Yesno"/>
+                <dataType>select</dataType>
+            </settings>
+        </column>
+    </columns>
+</listing>

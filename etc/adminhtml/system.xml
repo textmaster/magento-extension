@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * TextMaster_TextMaster admin configuration UI fields.
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+
+        <tab id="textmaster_textmaster" translate="label" sortOrder="210">
+            <label>TextMaster</label>
+        </tab>
+
+        <section id="textmaster_textmaster" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Configuration</label>
+            <tab>textmaster_textmaster</tab>
+            <resource>TextMaster_TextMaster::configuration</resource>
+            <group id="authentication" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Authentication</label>
+                <field id="environment" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Environment</label>
+                    <source_model>TextMaster\TextMaster\Model\Adminhtml\System\Config\Source\Environment</source_model>
+                </field>
+                <field id="staging_api_key" translate="label" type="password" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Api Key</label>
+                    <depends>
+                        <field id="environment">staging</field>
+                    </depends>
+                </field>
+                <field id="staging_api_secret" translate="label" type="password" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Api Secret</label>
+                    <depends>
+                        <field id="environment">staging</field>
+                    </depends>
+                </field>
+                <field id="production_api_key" translate="label" type="password" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Api Key</label>
+                    <depends>
+                        <field id="environment">production</field>
+                    </depends>
+                </field>
+                <field id="production_api_secret" translate="label" type="password" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Api Secret</label>
+                    <depends>
+                        <field id="environment">production</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Project Index Layout
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="main.top">
+            <block class="TextMaster\TextMaster\Block\Adminhtml\AvailableCredit" name="textmaster_project.grid.container" template="TextMaster_TextMaster::project/listing/available_credit.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <uiComponent name="textmaster_project_listing"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Module TextMaster
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="textmaster_project" resource="default" engine="innodb" comment="TextMaster Project">
+        <column xsi:type="int" name="project_id" nullable="false"
+                identity="true" padding="11" comment="Project ID"/>
+        <column xsi:type="varchar" name="textmaster_id" nullable="false"
+                length="255" comment="Project TextMaster ID"/>
+        <column xsi:type="varchar" name="token" nullable="false"
+                length="255" comment="Project Token"/>
+        <column xsi:type="varchar" name="name" nullable="false"
+                length="255" comment="Project Name"/>
+        <column xsi:type="datetime" name="due_date" nullable="true"
+                comment="Project Due Date"/>
+        <column xsi:type="varchar" name="template_id" nullable="true"
+                length="255" comment="Project Template ID"/>
+        <column xsi:type="varchar" name="source_language" nullable="true"
+                length="255" comment="Project Source Language"/>
+        <column xsi:type="smallint" name="source_store_id" padding="5"
+                unsigned="true" nullable="false" comment="Source Store ID"/>
+        <column xsi:type="varchar" name="target_language" nullable="true"
+                length="255" comment="Project Target Language"/>
+        <column xsi:type="smallint" name="target_store_id" padding="5"
+                unsigned="true" nullable="false" comment="Source Store ID"/>
+        <column xsi:type="varchar" name="document_type" nullable="false"
+                length="255" comment="Project Document Type"/>
+        <column xsi:type="decimal" name="price" nullable="true"
+                scale="4" precision="20" unsigned="true" comment="Project Price"/>
+        <column xsi:type="varchar" name="currency" nullable="true"
+                length="3" comment="Project Currency"/>
+        <column xsi:type="int" name="number_of_documents" nullable="false"
+                padding="11" unsigned="true" comment="Project Number of Documents"/>
+        <column xsi:type="int" name="total_word_count" nullable="true"
+                padding="11" unsigned="true" comment="Project Total Word Count"/>
+        <column xsi:type="decimal" name="progress" nullable="true"
+                scale="4" precision="20" unsigned="true" comment="Project Progress"/>
+        <column xsi:type="varchar" name="status" nullable="false"
+                length="255" comment="Project Status"/>
+        <column xsi:type="smallint" name="quote_validated" padding="5"
+                unsigned="true" nullable="false" default="0" comment="Quote Validated"/>
+        <column xsi:type="smallint" name="autolaunch" padding="5"
+                unsigned="true" nullable="false" default="0" comment="Autolaunch"/>
+        <column xsi:type="text" name="notes" nullable="true"
+                comment="Project Notes"/>
+        <column xsi:type="varchar" name="project_type" nullable="false"
+                length="255" comment="Project Type"/>
+        <column xsi:type="varchar" name="language_level" nullable="false"
+                length="255" comment="Project Language Level"/>
+        <column xsi:type="varchar" name="category" nullable="false"
+                length="255" comment="Project Category"/>
+        <column xsi:type="datetime" name="created_at" on_update="false"
+                nullable="false" default="CURRENT_TIMESTAMP" comment="Project Created At Date"/>
+        <column xsi:type="datetime" name="updated_at" on_update="true"
+                nullable="false" default="CURRENT_TIMESTAMP" comment="Project Updated At Date"/>
+        <column xsi:type="datetime" name="start_translation_at" on_update="false"
+                nullable="true" comment="Project Translation Start At Date"/>
+        <column xsi:type="smallint" name="is_applied" padding="5"
+                unsigned="true" nullable="false" default="0" comment="Is Project Translation Completed (All documents is_applied)"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="project_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="TEXTMASTER_ID">
+            <column name="textmaster_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="TEXTMASTER_PROJECT_SOURCE_STORE_ID_STORE_STORE_ID"
+                    table="textmaster_project" column="source_store_id" referenceTable="store" referenceColumn="store_id"
+                    onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="TEXTMASTER_PROJECT_TARGET_STORE_ID_STORE_STORE_ID"
+                    table="textmaster_project" column="target_store_id" referenceTable="store" referenceColumn="store_id"
+                    onDelete="CASCADE"/>
+        <index referenceId="TEXTMASTER_PROJECT_ID" indexType="btree">
+            <column name="project_id"/>
+        </index>
+        <index referenceId="FTI_TEXTMASTER_PROJECT" indexType="fulltext">
+            <column name="textmaster_id"/>
+            <column name="name"/>
+            <column name="status"/>
+            <column name="notes"/>
+        </index>
+    </table>
+    <table name="textmaster_document" resource="default" engine="innodb" comment="TextMaster Document">
+        <column xsi:type="int" name="document_id" nullable="false"
+                identity="true" padding="11" comment="Document ID"/>
+        <column xsi:type="varchar" name="textmaster_id" nullable="false"
+                length="255" comment="Document TextMaster ID"/>
+        <column xsi:type="varchar" name="token" nullable="false"
+                length="255" comment="Document Token"/>
+        <column xsi:type="int" name="project_id" nullable="false"
+                padding="11" comment="Project ID"/>
+        <column xsi:type="int" name="magento_entity_id" nullable="false"
+                padding="11" comment="Magento Entity ID (Product ID, Category ID, Page Cms Id or Block Cms Id)"/>
+        <column xsi:type="varchar" name="name" nullable="false"
+                length="255" comment="Document Name"/>
+        <column xsi:type="varchar" name="status" nullable="false"
+                length="255" comment="Document Status"/>
+        <column xsi:type="varchar" name="error_message" nullable="true"
+                length="255" comment="Document Error Message"/>
+        <column xsi:type="datetime" name="created_at" on_update="false"
+                nullable="false" default="CURRENT_TIMESTAMP" comment="Document Created At Date"/>
+        <column xsi:type="datetime" name="updated_at" on_update="true"
+                nullable="false" default="CURRENT_TIMESTAMP" comment="Document Updated At Date"/>
+        <column xsi:type="datetime" name="start_translation_at" on_update="false"
+                nullable="true" comment="Document Translation Start At Date"/>
+        <column xsi:type="smallint" name="is_applied" padding="5"
+                unsigned="true" nullable="false" default="0" comment="Is Document Translation Applied"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="document_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="TEXTMASTER_ID">
+            <column name="textmaster_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="TEXTMASTER_DOCUMENT_PROJECT_ID_TEXTMASTER_PROJECT_PROJECT_ID"
+                    table="textmaster_document" column="project_id" referenceTable="textmaster_project" referenceColumn="project_id"
+                    onDelete="CASCADE"/>
+        <index referenceId="TEXTMASTER_DOCUMENT_ID" indexType="btree">
+            <column name="document_id"/>
+        </index>
+        <index referenceId="FTI_TEXTMASTER_DOCUMENT" indexType="fulltext">
+            <column name="textmaster_id"/>
+            <column name="name"/>
+            <column name="status"/>
+        </index>
+    </table>
+    <table name="textmaster_project_attribute" resource="default" engine="innodb" comment="Textmaster Project Attribute">
+        <column xsi:type="int" name="project_attribute_id" nullable="false"
+                identity="true" padding="11" comment="Project Attribute ID"/>
+        <column xsi:type="int" name="project_id" nullable="false"
+                padding="11" comment="Project ID"/>
+        <column xsi:type="varchar" name="attribute_code" nullable="false"
+                length="255" comment="Attribute Code"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="project_attribute_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="TEXTMASTER_PROJECT_ID_ATTRIBUTE_CODE">
+            <column name="project_id"/>
+            <column name="attribute_code"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="TEXTMASTER_PROJECT_ATTRIBUTE_PROJECT_ID_TEXTMASTER_PROJECT_PROJECT_ID"
+                    table="textmaster_project_attribute" column="project_id" referenceTable="textmaster_project" referenceColumn="project_id"
+                    onDelete="CASCADE"/>
+        <index referenceId="TEXTMASTER_PROJECT_ATTRIBUTE_ID" indexType="btree">
+            <column name="project_attribute_id"/>
+        </index>
+    </table>
+    <table name="textmaster_language_mapping" resource="default" engine="innodb" comment="Textmaster Language Mapping">
+        <column xsi:type="int" name="language_mapping_id" unsigned="true" padding="11" nullable="false" identity="true" comment="Language Mapping ID"/>
+        <column xsi:type="varchar" name="magento_locale_language" nullable="false" length="25" comment="Locale Language From Magento 2"/>
+        <column xsi:type="varchar" name="api_locale_language" nullable="false" length="25" comment="Locale Language From Api"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="language_mapping_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="TEXTMASTER_LANGUAGE_MAPPING_UNIQUE">
+            <column name="magento_locale_language"/>
+            <column name="api_locale_language"/>
+        </constraint>
+        <index referenceId="TEXTMASTER_LANGUAGE_MAPPING_ID" indexType="btree">
+            <column name="language_mapping_id"/>
+        </index>
+    </table>
+    <table name="textmaster_translatable_content" resource="default" engine="innodb" comment="Textmaster Translatable Content">
+        <column xsi:type="int" name="translatable_content_id" unsigned="true"
+            padding="11" nullable="false" identity="true" comment="Translatable Content ID"/>
+        <column xsi:type="varchar" name="document_type" nullable="false"
+            length="255" comment="Document Type"/>
+        <column xsi:type="varchar" name="attribute_code" nullable="false"
+            length="255" comment="Translatable Content Attribute Code"/>
+        <column xsi:type="smallint" name="select_by_default" padding="5"
+            unsigned="true" nullable="false" default="0"
+            comment="Translatable Content Select By Default"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="translatable_content_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="TEXTMASTER_TRANSLATABLE_CONTENT_UNIQUE">
+            <column name="document_type"/>
+            <column name="attribute_code"/>
+        </constraint>
+        <index referenceId="TEXTMASTER_TRANSLATABLE_CONTENT_ID" indexType="btree">
+            <column name="translatable_content_id"/>
+        </index>
+    </table>
+</schema>

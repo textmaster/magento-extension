@@ -1,0 +1,58 @@
+diff --git a/Setup/Patch/Schema/CreateTextmasterAttributeView.php b/Setup/Patch/Schema/CreateTextmasterAttributeView.php
+index fa5c141..f3265ef 100644
+--- a/Setup/Patch/Schema/CreateTextmasterAttributeView.php
++++ b/Setup/Patch/Schema/CreateTextmasterAttributeView.php
+@@ -37,7 +37,6 @@ class CreateTextmasterAttributeView implements SchemaPatchInterface
+     {
+         return [];
+     }
+-    
+ 
+     /**
+      * @inheritdoc
+@@ -50,14 +49,26 @@ class CreateTextmasterAttributeView implements SchemaPatchInterface
+         $eavEntityTypeTable = $this->schemaSetup->getTable('eav_entity_type');
+         $textmasterTranslatableContentTable = $this->schemaSetup->getTable('textmaster_translatable_content');
+ 
++        $sql = "CREATE OR REPLACE FUNCTION `textmaster_func_inc_var`(reset BIT) RETURNS int
++                    NO SQL
++                    NOT DETERMINISTIC
++                    BEGIN
++                        IF reset THEN
++                            SET @var := 0;
++                        ELSE
++                            SET @var := IFNULL(@var,0) + 1;
++                        END IF;
++                        return @var;
++                   END";
++
++        $this->schemaSetup->getConnection()->multiQuery($sql);
++
+         $sql = "CREATE
+                 SQL SECURITY INVOKER
+                 VIEW {$viewToTextmasterAttributeView}
+                   AS
+                     SELECT
+-                        ROW_NUMBER() OVER (
+-                            ORDER BY document_type, attribute_code
+-                        ) attribute_view_id,
++                        textmaster_func_inc_var(0) AS attribute_view_id,
+                         document_type_attribute.document_type AS document_type,
+                         document_type_attribute.attribute_code AS attribute_code,
+                         document_type_attribute.attribute_label AS attribute_label,
+@@ -130,10 +141,11 @@ class CreateTextmasterAttributeView implements SchemaPatchInterface
+                                     'block' AS document_type,
+                                     'attribute_block_content' AS attribute_label
+                             ) document_type_attribute
+-                            LEFT JOIN {$textmasterTranslatableContentTable} ttc
+-                            ON document_type_attribute.document_type = ttc.document_type
+-                            AND document_type_attribute.attribute_code = ttc.attribute_code
+-                        )";
++                    LEFT JOIN {$textmasterTranslatableContentTable} ttc
++                        ON document_type_attribute.document_type = ttc.document_type
++                            AND document_type_attribute.attribute_code = ttc.attribute_code)
++                    JOIN (SELECT textmaster_func_inc_var(1)) r
++                    ORDER BY document_type, attribute_code";
+         $this->schemaSetup->getConnection()->query($sql);
+         $this->schemaSetup->endSetup();
+ 

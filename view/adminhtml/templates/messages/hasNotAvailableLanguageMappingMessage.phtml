@@ -1,0 +1,22 @@
+<?php
+/**
+ * Has not available language mapping message template
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+
+use Magento\Framework\View\Element\Template;
+
+/** @var Template $block */
+?>
+<?= $block->escapeHtml(
+    __(
+        'The module needs language mappings for Magento locales %1 to work. ' .
+        'Please click on the following link <a href="%2">Manage my Language Mapping</a>.',
+        $block->getData('not_available_language_mappings'),
+        $block->getData('url')
+    ),
+    ['a']
+);

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Language Mapping Edit/Create Form
+ *
+ * @category  TextMaster
+ * @package   TextMaster\TextMaster
+ * @copyright 2021 TextMaster
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">textmaster_languagemapping_form.textmaster_languagemapping_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Language Mapping Form</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="TextMaster\TextMaster\Block\Adminhtml\Edit\LanguageMapping\SaveButton"/>
+            <button name="delete" class="TextMaster\TextMaster\Block\Adminhtml\Edit\LanguageMapping\DeleteButton"/>
+            <button name="back" class="TextMaster\TextMaster\Block\Adminhtml\Edit\LanguageMapping\BackButton"/>
+        </buttons>
+        <namespace>textmaster_languagemapping_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>textmaster_languagemapping_form.textmaster_languagemapping_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="textmaster_languagemapping_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <aclResource>TextMaster_TextMaster::configuration</aclResource>
+        <dataProvider class="TextMaster\TextMaster\Ui\DataProvider\LanguageMapping\DataProvider" name="textmaster_languagemapping_form_data_source">
+            <settings>
+                <requestFieldName>language_mapping_id</requestFieldName>
+                <primaryFieldName>language_mapping_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label/>
+            <dataScope/>
+        </settings>
+
+        <field name="language_mapping_id" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>language_mapping_id</dataScope>
+            </settings>
+        </field>
+
+        <field name="magento_locale_language" formElement="select" sortOrder="10">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Magento Locale Language</label>
+                <dataScope>magento_locale_language</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="TextMaster\TextMaster\Model\Config\Source\MagentoLocaleLanguage"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="api_locale_language" formElement="select" sortOrder="20">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Api Locale Language</label>
+                <dataScope>api_locale_language</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="TextMaster\TextMaster\Model\Config\Source\ApiLocaleLanguage"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+</form>
